@@ -7,10 +7,14 @@
 using namespace std;
 
 bool bFishIsThere = false;
+bool bPlayerAlive = true;
+
+char restart;
+
 PlayerObjects::PlayerObjects()
 {
 	cout << "++++++++++++++++++" << endl;
-	cout << "+ simple_fishing +" << endl;
+	cout << "+ Simple_Fishing +" << endl;
 	cout << "++++++++++++++++++" << endl;
 	cout << "\nAuthor: c1tru5x (@citrusgino)\n" << endl;
 
@@ -21,7 +25,7 @@ PlayerObjects::PlayerObjects()
 PlayerObjects::~PlayerObjects()
 {
     cout << "You have collected [" << fishcounter << "] "<< "fishes!" << endl;
-    if (fishcounter == 0)
+    if (fishcounter >= 0 && fishcounter < 5)
     {
         cout << "Oh Boi we gonna starve.." << endl;
     }
@@ -44,6 +48,9 @@ void PlayerObjects::gameStart()
 {
 	while (!GetAsyncKeyState(VK_F1))
 	{
+        if (bPlayerAlive)
+        {
+
         srand(time(NULL)); //new rand after every program start.
         int r = rand()%2;  //only 0's and 1's
 
@@ -55,7 +62,7 @@ void PlayerObjects::gameStart()
             if (GetAsyncKeyState(VK_SPACE))
             {
                 //Pressing space to early
-                if (fishcounter - 10 >= 0)
+                /*if (fishcounter - 10 >= 0)
                 {
                     fishcounter -= 10;
                 }
@@ -63,6 +70,8 @@ void PlayerObjects::gameStart()
                 {
                     fishcounter = 0;
                 }
+                */
+                bPlayerAlive = false;
                 Beep(100, 200);
             }
         }
@@ -95,10 +104,29 @@ void PlayerObjects::gameStart()
             return;
         }
         Sleep(5);
+        }
+        else
+        {
+            cout << "Want to play again? (y/n)"<< endl;
+            cin >> restart;
+            if (restart == 'y')
+            {
+              bPlayerAlive = true;
+              fishcounter = 0;
+            }
+            else if (restart == 'n')
+            {
+               return;
+            }
+            else
+            {
+                cout << "Want to play again? (y/n)" << endl;
+            }
+        }
 	}
 }
 
-bool PlayerObjects::createFisher()
+void PlayerObjects::createFisher()
 {
     bFishIsThere = false;
 
@@ -115,11 +143,9 @@ bool PlayerObjects::createFisher()
     cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
 	cout << endl;
 	cout << "\nCOLLECTED: " << fishcounter << endl;
-
-	return true;
 }
 
-bool PlayerObjects::createFish()
+void PlayerObjects::createFish()
 {
     bFishIsThere = true;
 
@@ -132,10 +158,8 @@ bool PlayerObjects::createFish()
     cout << "  |   ~ ~ ~ ~ ~ \\~ ~" << endl;
     cout << " / \\~ ~ ~ ~ ~ ~ | ~ ~" << endl;
     cout << "######~ ~ ~ ~ ~ _o~ ~" << endl;
-	cout << "###### ~ ~ ~ ~><_> ~ ~" << endl;
+	cout << "###### ~ ~ ~  ><_>  ~" << endl;
     cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
 	cout << endl;
 	cout << "COLLECTED: " << fishcounter << endl;
-
-	return true;
 }
