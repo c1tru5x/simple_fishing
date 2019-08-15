@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Windows.h>
-#include <math.h>
+#include <ctime>
 
 #include "fishing.h"
 
