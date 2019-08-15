@@ -10,6 +10,8 @@ class PlayerObjects
 	    PlayerObjects();
 		~PlayerObjects();
 		void gameStart();
+		bool createFisher();
+		bool createFish();
 
 	private:
 		int fishcounter = 0;
