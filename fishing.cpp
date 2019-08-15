@@ -20,7 +20,23 @@ PlayerObjects::PlayerObjects()
 
 PlayerObjects::~PlayerObjects()
 {
-
+    cout << "You have collected [" << fishcounter << "] "<< "fishes!" << endl;
+    if (fishcounter == 0)
+    {
+        cout << "Oh Boi we gonna starve.." << endl;
+    }
+    else if (fishcounter >= 5 && fishcounter < 10)
+    {
+        cout << "Today we will survive!"<<endl;
+    }
+    else if (fishcounter >= 10 && fishcounter < 20)
+    {
+        cout << "You can invite your friends to join our meal!"<<endl;
+    }
+    else
+    {
+        cout << "SO MUCH FOOD!!!" << endl;
+    }
 	cout << "Game has been closed!" << endl;
 }
 
@@ -36,6 +52,19 @@ void PlayerObjects::gameStart()
         if (r == 0)
         {
             createFisher();
+            if (GetAsyncKeyState(VK_SPACE))
+            {
+                //Pressing space to early
+                if (fishcounter - 10 >= 0)
+                {
+                    fishcounter -= 10;
+                }
+                else
+                {
+                    fishcounter = 0;
+                }
+                Beep(100, 200);
+            }
         }
         else if (r == 1)
         {
@@ -46,15 +75,18 @@ void PlayerObjects::gameStart()
                 fishcounter++;
                 cout << "        ___" << endl;
                 cout << "       /   \\" << endl;
-                cout << "      /     _|" << endl;
-                cout << "  O  /    ><_>" << endl;
+                cout << "      /     ><_>" << endl;
+                cout << " ( ) /      " << endl;
                 cout << "  | /         " << endl;
                 cout << "  |m           " << endl;
-                cout << "  |             " << endl;
-                cout << " / \\             " << endl;
-                cout << "                 " << endl;
+                cout << "  |   ~ ~ ~ ~ ~ ~ ~ ~" << endl;
+                cout << " / \\~ ~ ~ ~ ~ ~ ~ ~ ~" << endl;
+                cout << "######~ ~ ~ ~ ~ ~ ~ ~ " << endl;
+                cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
+                cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
                 cout << endl;
                 cout << "\nCOLLECTED: " << fishcounter << endl;
+                Beep(300,200);
                 Sleep(300);
             }
         }
@@ -73,12 +105,14 @@ bool PlayerObjects::createFisher()
     cout << "        ___" << endl;
     cout << "       /   \\" << endl;
     cout << "      /     \\" << endl;
-    cout << "  O  /       \\" << endl;
+    cout << " ( ) /       \\" << endl;
     cout << "  | /         \\" << endl;
     cout << "  |m           \\" << endl;
-    cout << "  |             \\" << endl;
-    cout << " / \\             |" << endl;
-    cout << "                 o" << endl;
+    cout << "  |   ~ ~ ~ ~ ~ \\~ ~" << endl;
+    cout << " / \\~ ~ ~ ~ ~ ~ | ~ ~" << endl;
+    cout << "######~ ~ ~ ~ ~ ~o~ ~" << endl;
+    cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
+    cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
 	cout << endl;
 	cout << "\nCOLLECTED: " << fishcounter << endl;
 
@@ -92,13 +126,14 @@ bool PlayerObjects::createFish()
     cout << "        ___" << endl;
     cout << "       /   \\" << endl;
     cout << "      /     \\" << endl;
-    cout << "  O  /       \\" << endl;
+    cout << " ( ) /       \\" << endl;
     cout << "  | /         \\" << endl;
     cout << "  |m           \\" << endl;
-    cout << "  |             \\" << endl;
-    cout << " / \\             |" << endl;
-    cout << "                _o" << endl;
-	cout << "              ><_>" << endl;
+    cout << "  |   ~ ~ ~ ~ ~ \\~ ~" << endl;
+    cout << " / \\~ ~ ~ ~ ~ ~ | ~ ~" << endl;
+    cout << "######~ ~ ~ ~ ~ _o~ ~" << endl;
+	cout << "###### ~ ~ ~ ~><_> ~ ~" << endl;
+    cout << "###### ~ ~ ~ ~ ~ ~ ~ ~" << endl;
 	cout << endl;
 	cout << "COLLECTED: " << fishcounter << endl;
 
